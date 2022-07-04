@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "formvalidation@0.6.2-dev",
+      "destination": "wwwroot/formvalidation/",
+      "files": [
+        "js/formValidation.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validate@1.19.4",
+      "destination": "wwwroot/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js"
+      ]
+    },
+    {
+      "library": "limonte-sweetalert2@11.4.19",
+      "destination": "wwwroot/limonte-sweetalert2/",
+      "files": [
+        "sweetalert2.min.css",
+        "sweetalert2.all.min.js"
+      ]
+    }
+  ]
+}
