@@ -50,9 +50,11 @@ app.UseAuthorization();
 
     app.MapControllerRoute(name: "login", pattern: "giris", defaults: new { controller = "admin", action = "Login" });
     app.MapControllerRoute(name: "register", pattern: "kayit", defaults: new { controller = "admin", action = "Register" });
+    app.MapControllerRoute(name:"logout","guvenli-cikis",defaults:new {controller = "admin",action = "Logout"});
 
 
     app.MapControllerRoute(name: "cmshome", pattern: "yonetim", defaults: new { controller = "Cms", action = "Index" });
+
 
 #endregion
 

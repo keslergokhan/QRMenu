@@ -37,6 +37,7 @@
                     title: "Merhaba !" + data.data.adminName + " " + data.data.adminSurName,
                     text: "Hoş geldiniz ",
                 });
+                window.location.href = "/yonetim";
             } else if (data.status == 3) {
                 WarningAlert.fire({
                     title: "Üzgünüz !",

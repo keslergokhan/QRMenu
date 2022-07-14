@@ -30,7 +30,10 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
 
         public async Task<IActionResult> Login()
         {
-            return View();
+            if (User.Identity.IsAuthenticated is false)
+                return View();
+            else
+                return RedirectToAction("Index","Cms");
         }
 
         /// <summary>
@@ -86,6 +89,12 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
             return Json(result);
         }
 
+        
+        /// <summary>
+        ///     Admin giriş işlemleri / form post
+        /// </summary>
+        /// <param name="adminLoginQuery"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> LoginPost(AdminLoginQuery adminLoginQuery)
         {
@@ -139,6 +148,12 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
             }
 
             return Json(result.ClearException());
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
         }
     }
 }
