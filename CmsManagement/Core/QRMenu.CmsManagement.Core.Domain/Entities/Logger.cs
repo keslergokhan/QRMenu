@@ -30,7 +30,6 @@ namespace QRMenu.CmsManagement.Core.Domain.Entities
         /// <summary>
         ///     Exception.Message değeri
         /// </summary>
-        [MaxLength(550)]
         public string? ErrorMessage { get; set; }
         /// <summary>
         ///     Exception tipi

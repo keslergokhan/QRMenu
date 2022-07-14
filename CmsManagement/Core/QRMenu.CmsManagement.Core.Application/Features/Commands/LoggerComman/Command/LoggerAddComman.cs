@@ -27,5 +27,35 @@ namespace QRMenu.CmsManagement.Core.Application.Features.Commands.LoggerComman.C
         ///     Exception tipi
         /// </summary>
         public string? ExceptionType { get; set; }
+
+        public LoggerAddComman setLoggerTitle(string loggerTitle)
+        {
+            this.LoggerTitle = loggerTitle;
+            return this;
+        }
+
+        public LoggerAddComman setLoggerDescription(string loggerDescription)
+        {
+            this.LoggerDescription = loggerDescription;
+            return this;
+        }
+
+        public LoggerAddComman setErrorMessage(string errorMessage)
+        {
+            this.ErrorMessage = errorMessage;
+            return this;
+        }
+
+        public LoggerAddComman setErrorLocation(string errorLocation)
+        {
+            this.ErrorLocation = errorLocation;
+            return this;
+        }
+
+        public LoggerAddComman setExceptionType(string exceptionType)
+        {
+            this.ExceptionType = exceptionType;
+            return this;
+        }
     }
 }

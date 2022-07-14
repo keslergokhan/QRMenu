@@ -30,23 +30,6 @@ namespace QRMenu.CmsManagement.Core.Application.Concrete.Factories
             return this._value;
         }
 
-        public IFactory<T> SetVale(Expression<Func<T, object>> prop, object value)
-        {
-            PropertyInfo propertyInfo;
-
-            if (prop.Body is MemberExpression memberExpression)
-                propertyInfo = (memberExpression.Member as PropertyInfo)!;
-            else
-                propertyInfo = ((((UnaryExpression)prop.Body).Operand as MemberExpression)?.Member as PropertyInfo)!;
-
-            if (propertyInfo.PropertyType == value.GetType())
-                propertyInfo.SetValue(this._value, value);
-            else
-                throw new Exception("Type Error");
-
-
-            return this;
-        }
 
 
         #region Custom

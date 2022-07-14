@@ -297,8 +297,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("ErrorMessage")
-                        .HasMaxLength(550)
-                        .HasColumnType("nvarchar(550)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExceptionType")
                         .HasMaxLength(250)

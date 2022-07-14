@@ -13,6 +13,7 @@ using QRMenu.CmsManagement.Core.Application.Features.Queries.AdminQueri.Queries;
 using QRMenu.CmsManagement.Core.Application.Interfaces.Model;
 using QRMenu.CmsManagement.Core.Application.Interfaces.Repositories;
 using QRMenu.CmsManagement.Core.Domain.Entities;
+using System.Text.Json;
 
 namespace QRMenu.CmsManagement.Core.Application.Features.Queries.AdminQueri.Handlers
 {
@@ -49,14 +50,14 @@ namespace QRMenu.CmsManagement.Core.Application.Features.Queries.AdminQueri.Hand
             }
             catch (Exception ex)
             {
-                await _mediator.Send(Factory<LoggerAddComman>.Init()
-                    .SetVale(x => x.LoggerTitle, "Admin Giris")
-                    .SetVale(x => x.LoggerDescription, "Admin giris, admin kimlik bilgilerinin kontrolu")
-                    .SetVale(x => x.ErrorLocation, "AdminLoginHandler | " + typeof(AdminLoginHandler).Assembly.Location)
-                    .SetVale(x => x.ExceptionType, ex.GetType().ToString())
-                    .SetVale(x => x.ErrorMessage, ex.Message)
-                    .Get()
-                );
+                await _mediator.Send(Factory<LoggerAddComman>.Init().Get()
+                    .setLoggerTitle("Admin Giris")
+                    .setLoggerDescription("Admin giris, admin kimlik bilgilerinin kontrolu")
+                    .setErrorLocation("AdminLoginHandler | " + typeof(AdminLoginHandler).Assembly.Location)
+                    .setExceptionType(ex.GetType().ToString())
+                    .setErrorMessage(ex.Message));
+
+                
                 result.SetErrorMessage(GlobalMessage.globalError).SetException(ex);
             }
             

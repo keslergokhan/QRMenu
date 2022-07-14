@@ -34,7 +34,7 @@
             console.log(data);
             if (data.status == 1) {
                 SuccessAlert.fire({
-                    title: "Merhaba !" + data.adminName+" "+admin.adminSurName,
+                    title: "Merhaba !" + data.data.adminName + " " + data.data.adminSurName,
                     text: "Hoş geldiniz ",
                 });
             } else if (data.status == 3) {

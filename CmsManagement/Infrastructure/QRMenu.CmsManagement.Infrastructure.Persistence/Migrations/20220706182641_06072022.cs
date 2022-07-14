@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QRMenu.CmsManagement.Infrastructure.Persistence.Migrations
 {
-    public partial class _29062022 : Migration
+    public partial class _06072022 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -286,7 +286,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Migrations
                     LoggerTitle = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     LoggerDescription = table.Column<string>(type: "nvarchar(550)", maxLength: 550, nullable: true),
                     ErrorLocation = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    ErrorMessage = table.Column<string>(type: "nvarchar(550)", maxLength: 550, nullable: true),
+                    ErrorMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExceptionType = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>

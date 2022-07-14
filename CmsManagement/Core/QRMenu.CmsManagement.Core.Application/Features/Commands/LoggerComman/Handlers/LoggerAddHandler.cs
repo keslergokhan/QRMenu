@@ -45,14 +45,13 @@ namespace QRMenu.CmsManagement.Core.Application.Features.Commands.LoggerComman.H
             }
             catch (Exception ex)
             {
-                await _mediator.Send(Factory<LoggerAddComman>.Init()
-                    .SetVale(x => x.LoggerTitle, "Admin Kayıt")
-                    .SetVale(x => x.LoggerDescription, "Admin kayıt olma ve kullancı gmail kontrol işlemleri")
-                    .SetVale(x => x.ErrorLocation, "AdminRegisterHandler | " + typeof(LoggerAddHandler).Assembly.Location)
-                    .SetVale(x => x.ExceptionType, ex.GetType().ToString())
-                    .SetVale(x => x.ErrorMessage, ex.Message)
-                    .Get()
-                );
+                await _mediator.Send(Factory<LoggerAddComman>.Init().Get()
+                    .setLoggerTitle("Admin Kayıt")
+                    .setLoggerDescription("Admin kayıt olma ve kullancı gmail kontrol işlemleri")
+                    .setErrorLocation("AdminRegisterHandler | " + typeof(LoggerAddHandler).Assembly.Location)
+                    .setExceptionType(ex.GetType().ToString())
+                    .setErrorMessage(ex.Message));
+
                 return result.SetErrorMessage(ex.Message).SetException(ex);
             }
         }

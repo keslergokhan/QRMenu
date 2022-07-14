@@ -1,9 +1,19 @@
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 using QRMenu.CmsManagement.Infrastructure.Persistence;
 
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddPersistenceService();
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt=> {
+    opt.Cookie.Name = "app_qmenu_cms_cookie";
+    opt.LoginPath = new PathString("/giris");
+    opt.AccessDeniedPath = new PathString("/giris");
+});
+
+
 
 // Add services to the container.
 var razorPage = builder.Services.AddRazorPages();
@@ -12,8 +22,6 @@ if (builder.Environment.IsDevelopment())
 {
     razorPage.AddRazorRuntimeCompilation();
 }
-
-
 
 builder.Services.AddControllersWithViews();
 
@@ -30,6 +38,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 #region Admin
@@ -42,9 +51,12 @@ app.UseAuthorization();
     app.MapControllerRoute(name: "login", pattern: "giris", defaults: new { controller = "admin", action = "Login" });
     app.MapControllerRoute(name: "register", pattern: "kayit", defaults: new { controller = "admin", action = "Register" });
 
+
+    app.MapControllerRoute(name: "cmshome", pattern: "yonetim", defaults: new { controller = "Cms", action = "Index" });
+
 #endregion
 
-
+app.MapControllerRoute(name: "default", pattern:"{controller=Admin}/{action=login}");
 app.MapDefaultControllerRoute();
 
 app.Run();

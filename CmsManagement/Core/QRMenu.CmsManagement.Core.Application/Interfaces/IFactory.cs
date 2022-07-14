@@ -11,7 +11,6 @@ namespace QRMenu.CmsManagement.Core.Application.Interfaces
     public interface IFactory<T> where T : new()
     {
         public T Get();
-        public IFactory<T> SetVale(Expression<Func<T, object>> prop, object value);
 
         #region Custom
         public LoggerAddComman LoggerAddComman();

@@ -12,8 +12,8 @@ using QRMenu.CmsManagement.Infrastructure.Persistence.Context;
 namespace QRMenu.CmsManagement.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(QRMenuContext))]
-    [Migration("20220629204316_29062022")]
-    partial class _29062022
+    [Migration("20220706182641_06072022")]
+    partial class _06072022
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -299,8 +299,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("ErrorMessage")
-                        .HasMaxLength(550)
-                        .HasColumnType("nvarchar(550)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExceptionType")
                         .HasMaxLength(250)

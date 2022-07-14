@@ -10,6 +10,10 @@ using AutoMapper;
 using QRMenu.CmsManagement.Core.Application.Features.Queries.AdminQueri.Queries;
 using QRMenu.CmsManagement.Core.Application.Concrete.Factories;
 using QRMenu.CmsManagement.Core.Application.Features.Commands.LoggerComman.Command;
+using System.Text.Json;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
 {
@@ -69,14 +73,13 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
             }
             catch (Exception ex)
             {
-                await _mediator.Send(Factory<LoggerAddComman>.Init()
-                    .SetVale(x => x.LoggerTitle, "Admin Kayıt")
-                    .SetVale(x => x.LoggerDescription, "Admin kayıt olma ve kullancı gmail kontrol işlemleri")
-                    .SetVale(x => x.ErrorLocation, "AdminController,RegisterPost | " + typeof(AdminController).Assembly.Location)
-                    .SetVale(x => x.ExceptionType, ex.GetType().ToString())
-                    .SetVale(x => x.ErrorMessage, ex.Message)
-                    .Get()
-                );
+                await _mediator.Send(Factory<LoggerAddComman>.Init().Get()
+                    .setLoggerTitle("Admin Kayıt")
+                    .setLoggerDescription("Admin kayıt olma ve kullancı gmail kontrol işlemleri")
+                    .setErrorLocation("AdminController,RegisterPost | " + typeof(AdminController).Assembly.Location)
+                    .setExceptionType(ex.GetType().ToString())
+                    .setErrorMessage(ex.Message));
+
                 result.SetErrorMessage(ex.Message).SetException(ex);
             }
 
@@ -90,6 +93,34 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
             try
             {
                 result = await _mediator.Send(adminLoginQuery);
+                
+                //Giriş başarılı ise
+                if (result.Status == Core.Application.Enums.ResultStatusEnum.Success)
+                {
+                    List<Claim> adminClai = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.NameIdentifier,result.Data.Id.ToString()),
+                        new Claim(ClaimTypes.Name,result.Data.AdminName),
+                        new Claim(ClaimTypes.Surname,result.Data.AdminSurName),
+                        new Claim(ClaimTypes.Email,result.Data.AdminEmail),
+                        new Claim(ClaimTypes.Role,"admin"),
+                        new Claim("deneme","gokhanbaba"),
+                    };
+
+                    //Beni hatırla
+                    AuthenticationProperties autPersistent = new AuthenticationProperties
+                    {
+                        IsPersistent = true,
+                    };
+
+                    var adminIdentity = new ClaimsIdentity(adminClai, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(adminIdentity), autPersistent);
+                }
+
+                
+
             }
             catch (FluentValidationException ex)
             {
@@ -97,15 +128,13 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
             }
             catch (Exception ex)
             {
+                await _mediator.Send(Factory<LoggerAddComman>.Init().Get()
+                    .setLoggerTitle("Admin Giris")
+                    .setLoggerDescription("Admin giris, admin kimlik bilgilerinin kontrolu")
+                    .setErrorLocation("AdminController,LoginPost | " + typeof(AdminController).Assembly.Location)
+                    .setExceptionType(ex.GetType().ToString())
+                    .setErrorMessage(ex.Message));
 
-                await _mediator.Send(Factory<LoggerAddComman>.Init()
-                    .SetVale(x => x.LoggerTitle, "Admin Giris")
-                    .SetVale(x => x.LoggerDescription, "Admin giris, admin kimlik bilgilerinin kontrolu")
-                    .SetVale(x => x.ErrorLocation, "AdminController,LoginPost | " + typeof(AdminController).Assembly.Location)
-                    .SetVale(x => x.ExceptionType, ex.GetType().ToString())
-                    .SetVale(x => x.ErrorMessage, ex.Message)
-                    .Get()
-                );
                 result.SetErrorMessage(ex.Message);
             }
 
