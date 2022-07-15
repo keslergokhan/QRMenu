@@ -43,17 +43,23 @@ app.UseAuthorization();
 
 #region Admin
 
-    #region AjaxPost\Get
+    #region Login/Post & Register/Post & Logout
     app.MapControllerRoute(name: "registerPost", pattern: "kayit", defaults: new { controller = "admin", action = "RegisterPost" });
     app.MapControllerRoute(name: "registerPost", pattern: "giris", defaults: new { controller = "admin", action = "LoginPost" });
-    #endregion Post\GetEnd
+    
 
     app.MapControllerRoute(name: "login", pattern: "giris", defaults: new { controller = "admin", action = "Login" });
     app.MapControllerRoute(name: "register", pattern: "kayit", defaults: new { controller = "admin", action = "Register" });
     app.MapControllerRoute(name:"logout","guvenli-cikis",defaults:new {controller = "admin",action = "Logout"});
+#endregion Login/Post & Register/Post & Logout
 
 
+    #region Cms
     app.MapControllerRoute(name: "cmshome", pattern: "yonetim", defaults: new { controller = "Cms", action = "Index" });
+    app.MapControllerRoute(name: "cmsAdminProfile", pattern: "yonetici-profil", defaults: new {controller = "Cms", action = "AdminProfile" });
+    #endregion Cms End
+
+
 
 
 #endregion

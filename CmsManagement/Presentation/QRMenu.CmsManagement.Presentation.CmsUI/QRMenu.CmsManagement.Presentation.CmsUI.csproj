@@ -19,4 +19,9 @@
     <ProjectReference Include="..\..\Infrastructure\QRMenu.CmsManagement.Infrastructure.Persistence\QRMenu.CmsManagement.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CustomTagHelpers\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

@@ -3,26 +3,30 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QRMenu.CmsManagement.Presentation.CmsUI.Common;
 using QRMenu.CmsManagement.Presentation.CmsUI.Extensions;
+using QRMenu.CmsManagement.Presentation.CmsUI.Helpers;
 
 namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CmsController : BaseController
     {
         private readonly IMediator _mediator;
 
         public CmsController(IMediator mediator)
         {
-
+            this._mediator = mediator;
         }
-
-
-        [Authorize(Roles = "admin")]
+        
         public async Task<IActionResult> Index()
         {
-
-
-            //var result = await _mediator.Send(new AdminGetQuery { Id = Guid.Parse("A0BAC93F-9233-4B00-A17D-C97531B3089B") });
             return View("CmsIndex");
+        }
+
+        public async Task<IActionResult> AdminProfile()
+        {
+            ViewBag.Title = "Admin Profil Yönetimi";
+
+            return View("CmsAdminProfile");
         }
     }
 }

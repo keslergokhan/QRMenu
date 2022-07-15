@@ -150,6 +150,11 @@ namespace QRMenu.CmsManagement.Presentation.CmsUI.Controllers
             return Json(result.ClearException());
         }
 
+
+        /// <summary>
+        ///     Güvenli çıkış
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
