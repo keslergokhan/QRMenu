@@ -26,10 +26,15 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/dark-layout.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/bordered-layout.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/form-validation.css">
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu.css">
     <!-- END: Page CSS-->
+
+    <!--BEGIN : Sweet alert-->
+    <link rel="stylesheet" type="text/css" href="/limonte-sweetalert2/sweetalert2.min.css">
+    <!--END:-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
@@ -81,14 +86,27 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
+    <script src="/app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <!-- END: Page Vendor JS-->
+
+    <!--BEGIN : Sweet alert-->
+    <script src="/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+    <!--END:-->
 
     <!-- BEGIN: Theme JS-->
     <script src="/app-assets/js/core/app-menu.js"></script>
     <script src="/app-assets/js/core/app.js"></script>
     <!-- END: Theme JS-->
 
+    <!--BEGIN: Custom global-->
+    <script src="/custom/js/global-custom.js"></script>
+    <!--- END: ---->
+
     <!-- BEGIN: Page JS-->
+    @await RenderSectionAsync("script",false);
     <!-- END: Page JS-->
 
     <script>

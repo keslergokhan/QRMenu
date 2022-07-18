@@ -56,7 +56,10 @@ app.UseAuthorization();
 
     #region Cms
     app.MapControllerRoute(name: "cmshome", pattern: "yonetim", defaults: new { controller = "Cms", action = "Index" });
-    app.MapControllerRoute(name: "cmsAdminProfile", pattern: "yonetici-profil", defaults: new {controller = "Cms", action = "AdminProfile" });
+    
+    app.MapControllerRoute(name: "cmsAdminProfile", pattern: "yonetici-profil/{id}", defaults: new {controller = "Cms", action = "AdminProfile" });
+    app.MapControllerRoute(name: "cmsAdminProfileUpdate",pattern: "cms-yonetici-guncelle",defaults:new {controller="Cms",action="AdminProfileUpdate"});
+
     #endregion Cms End
 
 

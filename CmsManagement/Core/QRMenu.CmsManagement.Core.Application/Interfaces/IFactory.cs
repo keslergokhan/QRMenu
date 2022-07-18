@@ -1,4 +1,5 @@
 ﻿using QRMenu.CmsManagement.Core.Application.Features.Commands.LoggerComman.Command;
+using QRMenu.CmsManagement.Core.Application.Features.Queries.AdminQueri.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace QRMenu.CmsManagement.Core.Application.Interfaces
 
         #region Custom
         public LoggerAddComman LoggerAddComman();
+
+        public AdminGetQuery AdminGetQuery();
         #endregion
     }
 }

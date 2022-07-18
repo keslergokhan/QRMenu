@@ -1,4 +1,5 @@
 ﻿@inject IHttpContextAccessor http
+@model QRMenu.CmsManagement.Presentation.CmsUI.Models.Admins.AdminProfileOutViewModel;
 <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
     <div class="row">
@@ -8,23 +9,23 @@
                     <h4 class="card-title">@http.GetUserNameAndSurname()</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form form-vertical">
+                    <form class="form form-vertical" method="post" id="cmsAdminProfile" data-url="/cms-yonetici-guncelle">
                         <div class="row">
                             <div class="col-12 p-0">
                                  <div class="row">
                                     <div class="col-md-6">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Adınız</label>
-                                                <input type="text" id="first-name-vertical" class="form-control" name="fname" placeholder="First Name" />
+                                                <label for="adminName">Adınız</label>
+                                                <input type="text" id="adminName" class="form-control" name="adminName" value="@Model.AdminReadDto.AdminName" placeholder="First Name" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Soyadınız</label>
-                                                <input type="text" id="first-name-vertical" class="form-control" name="fname" placeholder="First Name" />
+                                                <label for="adminSurname">Soyadınız</label>
+                                                <input type="text" id="adminSurname" class="form-control" name="adminSurname" value="@Model.AdminReadDto.AdminSurName" placeholder="First Name" />
                                             </div>
                                         </div>
                                     </div>
@@ -33,28 +34,35 @@
                             
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="email-id-vertical">E-posta Adresi</label>
-                                    <input type="email" id="email-id-vertical" class="form-control" name="email-id" placeholder="Email" />
+                                    <label for="adminEmail">E-posta Adresi</label>
+                                    <input type="email" id="adminEmail" class="form-control" name="adminEmail" value="@Model.AdminReadDto.AdminEmail" placeholder="Email" />
                                 </div>
                             </div>
                            
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="password-vertical">Şifre</label>
-                                    <input type="password" id="password-vertical" class="form-control" name="contact" placeholder="Password" />
+                                    <label for="adminPassword">Şifre</label>
+                                    <input type="password" id="adminPassword" class="form-control" name="adminPassword" placeholder="Password" />
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="password-vertical">Yeni Şifre</label>
-                                    <input type="password" id="password-vertical" class="form-control" name="contact" placeholder="Password" />
+                                    <label for="adminPasswordNew">Yeni Şifre</label>
+                                    <input type="password" id="adminPasswordNew" class="form-control" name="adminPasswordNew" placeholder="Password" />
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="adminPasswordNewControl">Yeni Şifre Tekrar</label>
+                                    <input type="password" id="adminPasswordNewControl" class="form-control" name="adminPasswordNewControl" placeholder="Password" />
                                 </div>
                             </div>
 
                             
                             <div class="col-12">
-                                <button type="reset" class="btn btn-primary mr-1">Kayıt</button>
+                                <button class="btn btn-primary mr-1">Güncelle</button>
                                 <th:a class="btn btn-outline-secondary" asp-controller="Cms" asp-action="Index" >İptal</th:a>
                             </div>
                         </div>
@@ -65,3 +73,7 @@
     </div>
 </section>
 <!-- Basic Vertical form layout section end -->
+
+@section script{
+    <script src="/custom/js/cms-admin-profile.js?v=2.4"></script>
+}
