@@ -1,0 +1,101 @@
+﻿<section id="basic-vertical-layouts">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">@ViewBag.Title</h4>
+                </div>
+                <div class="card-body">
+                    <form class="form form-vertical" method="post" id="cmsLanguageAdd" data-url="/dil-ekle">
+                        <input name="Id" value=""  hidden/>
+                        <div class="row">
+                            <div class="col-12 p-0">
+                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="adminName">Dil Adı</label>
+                                                <input type="text" id="LanguageName" class="form-control" name="LanguageName" value="" placeholder="Türkçe" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="adminSurname">Dil Kodu</label>
+                                                <input type="text" id="LanguageCode" class="form-control" name="LanguageCode" value="" placeholder="tr" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                            
+                           
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="adminEmail">Bayrak</label>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="tr" name="LanguageFlag" class="custom-control-input" value="tr" checked />
+                                                <label class="custom-control-label" for="tr">Türkçe <i class="flag-icon flag-icon-tr"></i></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="gb" name="LanguageFlag" class="custom-control-input" value="gb" />
+                                                <label class="custom-control-label" for="gb">İngilizce <i class="flag-icon flag-icon-gb"></i></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="ru" name="LanguageFlag" class="custom-control-input" value="ru" />
+                                                <label class="custom-control-label" for="ru">Rusça <i class="flag-icon flag-icon-ru"></i></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="de" name="LanguageFlag" class="custom-control-input" value="de" />
+                                                <label class="custom-control-label" for="de">Almanca <i class="flag-icon flag-icon-de"></i></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="xx" name="flag" class="custom-control-input" value="xx" />
+                                                <label class="custom-control-label" for="xx">Boş <i class="flag-icon flag-icon-xx"></i></label>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Sorting">Sıra</label>
+                                    <input type="number" id="Sorting" class="form-control" name="Sorting" placeholder="0" value="1" />
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-12">
+                                <button class="btn btn-primary mr-1">Ekle</button>
+                                <th:a class="btn btn-outline-secondary" asp-controller="Cms" asp-action="Index" >İptal</th:a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Basic Vertical form layout section end -->
+
+@section script{
+    <script src="/custom/js/cms-language.js?v=1.2"></script>
+}

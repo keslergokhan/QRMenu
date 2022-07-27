@@ -19,6 +19,8 @@ namespace QRMenu.CmsManagement.Core.Application.Mappings
             CreateMap<AdminRegisterComman, AdminReadDto>();
             CreateMap<AdminLoginQuery, Admin>();
             CreateMap<Admin, AdminReadDto>();
+            CreateMap<AdminProfileUpdateComman, Admin>();
+            CreateMap<Admin, AdminProfileUpdateComman> ();
         }
     }
 }

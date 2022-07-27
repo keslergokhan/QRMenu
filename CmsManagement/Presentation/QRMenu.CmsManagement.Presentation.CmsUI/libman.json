@@ -23,6 +23,14 @@
         "sweetalert2.min.css",
         "sweetalert2.all.min.js"
       ]
+    },
+    {
+      "library": "font-awesome@6.1.1",
+      "destination": "wwwroot/font-awesome/",
+      "files": [
+        "css/all.min.css",
+        "js/all.min.js"
+      ]
     }
   ]
 }

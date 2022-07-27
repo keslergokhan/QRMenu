@@ -20,7 +20,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Concrete.Repositories
 
         public Filter(DbSet<TEntity> table)
         {
-            this._query = table;
+            this._query = table.AsNoTracking().AsQueryable();
         }
 
         public IFilter<TEntity> Where(Expression<Func<TEntity, bool>> where)

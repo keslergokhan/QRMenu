@@ -191,7 +191,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Concrete.Repositories
                 if (result.Status == Core.Application.Enums.ResultStatusEnum.Success)
                     return new Result().SetSuccessMessage(GlobalMessage.globalSuccess);
                 else
-                    return new Result().SetWarningMessage(result.Message);
+                    throw new Exception(result.Message);
             }
             catch(Exception ex)
             {
@@ -202,7 +202,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Concrete.Repositories
         {
             try
             {
-                int result = base._dbContext.SaveChanges();
+                int result = await base._dbContext.SaveChangesAsync();
                 if (result > 0)
                     return new ResultData<int>().SetDataSuccessMessage(result, String.Format("Veritabanına {0} adet veri başarıyla kayıt edildi.",result));
                 else

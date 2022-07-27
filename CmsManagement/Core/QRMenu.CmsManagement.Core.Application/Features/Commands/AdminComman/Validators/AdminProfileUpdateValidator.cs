@@ -44,7 +44,7 @@ namespace QRMenu.CmsManagement.Core.Application.Features.Commands.AdminComman.Va
             RuleFor(x => x.adminPasswordNewControl).
                 MaximumLength(25).WithMessage("En fazla {0} olabilir").
                 MinimumLength(6).WithMessage("En az {0} olabilir").
-                Equal(x => x.AdminPassword).WithMessage("Şifre uyuşmuyor lütfen tekrar deneyin");
+                Equal(x => x.AdminPasswordNew).WithMessage("Şifre uyuşmuyor lütfen tekrar deneyin");
         }
     }
 }

@@ -44,23 +44,28 @@ app.UseAuthorization();
 #region Admin
 
     #region Login/Post & Register/Post & Logout
-    app.MapControllerRoute(name: "registerPost", pattern: "kayit", defaults: new { controller = "admin", action = "RegisterPost" });
-    app.MapControllerRoute(name: "registerPost", pattern: "giris", defaults: new { controller = "admin", action = "LoginPost" });
+    app.MapControllerRoute(name: "registerPost", pattern: "kayit", defaults: new { controller = "Admin", action = "RegisterPost" });
+    app.MapControllerRoute(name: "registerPost", pattern: "giris", defaults: new { controller = "Admin", action = "LoginPost" });
     
 
-    app.MapControllerRoute(name: "login", pattern: "giris", defaults: new { controller = "admin", action = "Login" });
-    app.MapControllerRoute(name: "register", pattern: "kayit", defaults: new { controller = "admin", action = "Register" });
-    app.MapControllerRoute(name:"logout","guvenli-cikis",defaults:new {controller = "admin",action = "Logout"});
-#endregion Login/Post & Register/Post & Logout
+    app.MapControllerRoute(name: "login", pattern: "giris", defaults: new { controller = "Admin", action = "Login" });
+    app.MapControllerRoute(name: "register", pattern: "kayit", defaults: new { controller = "Admin", action = "Register" });
+    app.MapControllerRoute(name:"logout","guvenli-cikis",defaults:new {controller = "Admin",action = "Logout" });
+    #endregion Login/Post & Register/Post & Logout
 
 
     #region Cms
     app.MapControllerRoute(name: "cmshome", pattern: "yonetim", defaults: new { controller = "Cms", action = "Index" });
     
+    //admin profil
     app.MapControllerRoute(name: "cmsAdminProfile", pattern: "yonetici-profil/{id}", defaults: new {controller = "Cms", action = "AdminProfile" });
     app.MapControllerRoute(name: "cmsAdminProfileUpdate",pattern: "cms-yonetici-guncelle",defaults:new {controller="Cms",action="AdminProfileUpdate"});
 
-    #endregion Cms End
+    app.MapControllerRoute(name: "cmsLanguages", pattern: "diller",defaults: new {controller = "Language",action = "List"});
+    app.MapControllerRoute(name: "cmsLanguages", pattern: "dil-ekle", defaults: new { controller = "Language", action = "Add" });
+
+
+#endregion Cms End
 
 
 

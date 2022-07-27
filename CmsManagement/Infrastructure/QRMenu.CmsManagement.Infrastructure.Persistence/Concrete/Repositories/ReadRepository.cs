@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using QRMenu.CmsManagement.Core.Application.Concrete.Model;
 using QRMenu.CmsManagement.Core.Application.Interfaces.Model;
 using QRMenu.CmsManagement.Core.Application.Interfaces.Repositories;
+using QRMenu.CmsManagement.Core.Domain.Common;
 using QRMenu.CmsManagement.Infrastructure.Persistence.Context;
 
 namespace QRMenu.CmsManagement.Infrastructure.Persistence.Concrete.Repositories
 {
-    public class ReadRepository<TEntity> : BaseRepository<TEntity>, IReadRepository<TEntity> where TEntity : class
+    public class ReadRepository<TEntity> : BaseRepository<TEntity>, IReadRepository<TEntity> where TEntity : BaseEntity
     {
         public ReadRepository(QRMenuContext dbContext):base(dbContext)
         {
@@ -75,8 +76,8 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence.Concrete.Repositories
             TEntity result = null;
             try
             {
-                result = await base.Table.FindAsync(id);
-                
+                result = await base.Table.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==id);
+
                 return new ResultData<TEntity>().SetDataSuccessMessage(result, "ID değeri başarıyla getirildi");
             }
             catch (Exception ex)
