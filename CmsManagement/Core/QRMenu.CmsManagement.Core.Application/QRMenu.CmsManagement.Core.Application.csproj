@@ -22,7 +22,10 @@
 
   <ItemGroup>
     <Folder Include="Concrete\Dtos\Loggers\" />
-    <Folder Include="Concrete\Dtos\Writers\Admin\" />
+    <Folder Include="Features\Queries\LanguageQueri\Handlers\" />
+    <Folder Include="Features\Queries\LanguageQueri\Validators\" />
+    <Folder Include="Features\Queries\LanguageQueri\Queries\" />
+    <Folder Include="Interfaces\Services\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

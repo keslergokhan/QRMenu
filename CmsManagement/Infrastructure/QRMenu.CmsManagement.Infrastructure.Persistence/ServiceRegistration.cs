@@ -24,6 +24,7 @@ namespace QRMenu.CmsManagement.Infrastructure.Persistence
             serviceDescriptors.AddScoped<IReadRepository<Admin>, ReadRepository<Admin>>();
             serviceDescriptors.AddScoped<IWriteRepository<Admin>, WriteRepository<Admin>>();
             serviceDescriptors.AddScoped<IWriteRepository<Logger>, WriteRepository<Logger>>();
+            serviceDescriptors.AddScoped<IWriteRepository<Language>, WriteRepository<Language>>();
         }
     }
 }

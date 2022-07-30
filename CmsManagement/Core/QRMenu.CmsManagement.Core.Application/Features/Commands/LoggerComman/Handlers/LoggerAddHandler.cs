@@ -28,7 +28,7 @@ namespace QRMenu.CmsManagement.Core.Application.Features.Commands.LoggerComman.H
         {
             _loggerRepository = loggerRepository;
             _mapper = mapper;
-            _mediator = _mediator;
+            _mediator = mediator;
         }
 
         public async Task<IResult> Handle(LoggerAddComman request, CancellationToken cancellationToken)
